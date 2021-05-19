@@ -13,7 +13,7 @@ def get_job_id(url):
     return parse_qs(parsed.query)['currentJobId'][0]
 
 
-URL = 'https://www.linkedin.com/jobs/view/2539686984'  # Link to linkedin job posting
+URL = input('Paste a LinkedIn Job URL: ')  # Link to linkedin job posting
 
 # If user inputs non-direct link, check if it contains the jobID and build a valid URL
 if 'currentJobId' in URL:
