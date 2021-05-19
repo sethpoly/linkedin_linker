@@ -1,12 +1,29 @@
 import requests
 from bs4 import BeautifulSoup
+import urllib.parse as urlparse
+from urllib.parse import parse_qs
+
 
 # > Get the 'Copy Link' from LinkedIn job posting in /Jobs
 # > Retrieve the first href from the page.content to get link to job posting
 
-URL = 'https://www.linkedin.com/jobs/view/2507865886/'  # Link to linkedin job posting
-page = requests.get(URL)
+# Returns corresponding job id from job URL
+def get_job_id(url):
+    parsed = urlparse.urlparse(url)
+    return parse_qs(parsed.query)['currentJobId'][0]
 
+
+URL = 'https://www.linkedin.com/jobs/view/2539686984'  # Link to linkedin job posting
+
+# If user inputs non-direct link, check if it contains the jobID and build a valid URL
+if 'currentJobId' in URL:
+    print('Indirect URL found : parsing job id..')
+    job_id = get_job_id(URL)
+    URL = f'https://www.linkedin.com/jobs/view/{job_id}'
+    print(f'New URL : {URL}')
+
+# Make request to page
+page = requests.get(URL)
 
 # Set up beautiful soup object
 soup = BeautifulSoup(page.content, 'html.parser')
