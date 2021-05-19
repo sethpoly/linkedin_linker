@@ -47,7 +47,5 @@ while URL != 'q':
     job_title_parent = result.find('h3', class_='sub-nav-cta__header')
     job_title = job_title_parent.text
 
-    # Print parsed data
-    print(f'Job title: {job_title}')
-    print(f'Company : {company.text}')
-    print(f'Location : {location}')
+    job_dict = {'job_title':job_title,'company':company.text,'location':location}
+    print(job_dict)
