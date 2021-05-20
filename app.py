@@ -16,7 +16,7 @@ def get_job_id(url):
 URL = ''
 while URL != 'q':
     URL = input('Paste a LinkedIn Job URL or type  "q" to exit: ')  # Link to linkedin job posting
-    
+    # Break if q is entered 
     if URL == 'q':
         print('Exiting application...')
         break
