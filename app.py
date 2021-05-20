@@ -28,13 +28,21 @@ while URL != 'q':
         URL = f'https://www.linkedin.com/jobs/view/{job_id}'
         print(f'New URL : {URL}')
 
+
     # Make request to page
     page = requests.get(URL)
 
     # Set up beautiful soup object
     soup = BeautifulSoup(page.content, 'html.parser')
-    result = soup.find(id="main-content")
-    print(result.prettify())
+
+    # Ensure user is entering linkedin url
+    try:
+        result = soup.find(id="main-content")
+        print(result.prettify())
+    except AttributeError:
+        print('Invalid URL: use valid LinkedIn URL.')
+        continue
+
 
     # Get parent element containing comapny name and location
     company_and_location = result.find('div', class_='sub-nav-cta__sub-text-container')
