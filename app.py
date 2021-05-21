@@ -55,5 +55,5 @@ while URL != 'q':
     job_title_parent = result.find('h3', class_='sub-nav-cta__header')
     job_title = job_title_parent.text
 
-    job_dict = {'job_title':job_title,'company':company.text,'location':location}
+    job_dict = {'job_title':job_title,'company':company.text,'location':location,'job_url':URL}
     print(job_dict)
