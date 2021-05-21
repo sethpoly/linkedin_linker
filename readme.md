@@ -6,6 +6,10 @@ Helpful when automating the job application process.
 - Company name
 - Role title
 - Location
+- Seniority Level (Entry, Associate, etc.)
+- URL to job posting
+
+@return: a python dictionary containing the values
 
 ## Technologies Used
 Python, BeautifulSoup
