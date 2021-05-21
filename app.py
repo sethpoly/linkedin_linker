@@ -44,7 +44,7 @@ while URL != 'q':
         continue
 
 
-    # Get parent element containing comapny name and location
+    # Get parent element containing company name and location
     company_and_location = result.find('div', class_='sub-nav-cta__sub-text-container')
 
     # Retrieve company name and location from parent element
@@ -55,5 +55,10 @@ while URL != 'q':
     job_title_parent = result.find('h3', class_='sub-nav-cta__header')
     job_title = job_title_parent.text
 
-    job_dict = {'job_title':job_title,'company':company.text,'location':location,'job_url':URL}
+    # Get parent element for Seniority Level
+    level_parent = result.find('ul', class_='job-criteria__list')
+    level = level_parent.select('span')[0].get_text(strip=True)
+
+
+    job_dict = {'job_title':job_title,'company':company.text,'location':location,'job_url':URL,'level':level}
     print(job_dict)
